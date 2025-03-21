@@ -1,0 +1,6 @@
+usage_data.json
+__pycache__
+*.pyc
+*.pdf
+*.log
+venv/
