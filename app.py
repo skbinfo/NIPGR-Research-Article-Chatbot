@@ -226,12 +226,12 @@ if st.session_state.user_id is None and st.session_state.user_api_key is None:
     
     with tab1:
         with st.form(key='login_form'):
-            login_id = st.text_input("NIPGR Login ID (e.g., username@nipgr.ac.in)", key="login_id")
+            login_id = st.text_input("Username", key="login_id")
             password = st.text_input("Password", type="password", key="password")
             submit = st.form_submit_button(label="Login")
             if submit:
-                if not login_id.endswith("@nipgr.ac.in"):
-                    st.error("Login ID must end with @nipgr.ac.in")
+                if not login_id:  # Ensure username is not empty
+                    st.error("Username cannot be empty")
                 elif login_id in users:
                     if users[login_id] == password:
                         st.session_state.user_id = login_id
@@ -249,12 +249,12 @@ if st.session_state.user_id is None and st.session_state.user_api_key is None:
 
     with tab2:
         with st.form(key='signup_form'):
-            signup_id = st.text_input("NIPGR Signup ID (e.g., username@nipgr.ac.in)", key="signup_id")
+            signup_id = st.text_input("Username", key="signup_id")
             signup_password = st.text_input("Create Password", type="password", key="signup_password")
             signup_submit = st.form_submit_button(label="Signup")
             if signup_submit:
-                if not signup_id.endswith("@nipgr.ac.in"):
-                    st.error("Signup ID must end with @nipgr.ac.in")
+                if not signup_id:  # Ensure username is not empty
+                    st.error("Username cannot be empty")
                 elif signup_id in users:
                     st.error("User already exists. Please log in.")
                 else:
